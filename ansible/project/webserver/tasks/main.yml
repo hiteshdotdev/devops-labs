@@ -1,0 +1,65 @@
+---
+# tasks file for webserver
+
+- name: Updating packages cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Update all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+
+- name: Installing the webserver and required packages
+  ansible.builtin.apt:
+    pkg:
+      - nginx
+      - nodejs
+      - npm
+      - git
+    state: present
+
+- name: Clone the project repository
+  ansible.builtin.git:
+    repo: 'https://github.com/hiteshverse/tic-tac-toe.git'
+    dest: "{{ project_dir }}"
+    clone: yes
+    update: yes
+
+- name: Install the project dependencies.
+  community.general.npm:
+    path: "{{ project_dir }}"
+    ci: true
+    state: present
+
+- name: Run project build script
+  ansible.builtin.command: npm run build
+  args:
+    chdir: "{{ project_dir }}"
+
+- name: Copy the static files into nginx directory
+  ansible.builtin.copy:
+    src: "{{ build_path }}"
+    dest: "/var/www/{{ project_name }}"
+    remote_src: true
+
+- name: Remove default nginx config files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/nginx/sites-available/default
+    - /etc/nginx/sites-enabled/default
+
+- name: Copying the nginx config to the server
+  ansible.builtin.copy:
+    src: "../templates/{{ project_name }}.conf"
+    dest: /etc/nginx/sites-available/
+
+- name: Creating a symlink inside the sites-enabled
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ project_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ project_name }}.conf"
+    state: link
+  notify: Restart Nginx
+

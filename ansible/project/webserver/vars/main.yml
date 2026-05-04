@@ -1,0 +1,6 @@
+---
+# vars file for webserver
+
+project_name: tic-tac-toe
+project_dir: /root/tic-tac-toe/
+build_path: /root/tic-tac-toe/dist/tic-tac-toe/browser/

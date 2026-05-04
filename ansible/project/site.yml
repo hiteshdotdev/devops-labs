@@ -1,0 +1,5 @@
+---
+- name: Deploying tic-tac-toe game
+  hosts: prod
+  roles:
+    - webserver
