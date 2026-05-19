@@ -4,8 +4,8 @@
 
 ## File/Dir Permissions
 
-![ls output](../assets/ls-output.png)
-![directory permissions](../assets/dir-permissions.png)
+![ls output](../../assets/ls-output.png)
+![directory permissions](../../assets/dir-permissions.png)
 
 `drwxrwxr-x` breakdown -
 
@@ -15,7 +15,7 @@
   - `rwx` - file group can read, write, execute (group is hitesh, since the default group of the file owner is hitesh)
   - `r-x` - other users can only read and execute
 
-![permission bits](../assets/permission-bits.webp)
+![permission bits](../../assets/permission-bits.webp)
 
 ### chmod - changing permissions
 
@@ -31,7 +31,7 @@ the permissions of a file/dir can only be changed by the owner of the file/dir o
 
 ## Umask
 
-![umask table](../assets/umask-table.png)
+![umask table](../../assets/umask-table.png)
 
 umask is a file system setting and command that specifies the default permissions for newly created files and directories.
 
@@ -39,7 +39,7 @@ every system has a maximum set of permissions defined for files and directories 
 - directories default to `777` - owner, group and others have full permissions
 - files default to `666` - owner, group and others can read and write, but no execute (security purposes)
 
-![umask command](../assets/umask-cmd.png)
+![umask command](../../assets/umask-cmd.png)
 
 with `umask 0002` set, permissions are applied like -
 
@@ -48,7 +48,7 @@ with `umask 0002` set, permissions are applied like -
 666 - 0002 = 664   # files -> owner and group can read and write, others can only read
 ```
 
-![umask applied](../assets/umask-applied.png)
+![umask applied](../../assets/umask-applied.png)
 
 umask setting can be changed and will be applied to dirs and files created after the change.
 

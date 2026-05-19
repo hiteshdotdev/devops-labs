@@ -1,22 +1,21 @@
-Configuration Management
-========================
+# Configuration Management
 
-Why it is needed / which problem it solves?
---------------------------------------------
+## Why it is needed / which problem it solves?
+
 The main use case of config management is to automate workflows on multiple servers.
 It involves installing software components, updating systems, making them secure, and many more things.
 
-Available Tools
----------------
+## Available Tools
+
 Puppet, Ansible, Chef
 
-Why Ansible?
-------------
+## Why Ansible?
+
 Since it's the most popular open source tool for config management, which also has wider community support.
 Also, the configs are written in simple YAML files so the learning curve is slightly lower.
 
-Ansible vs Puppet
------------------
+## Ansible vs Puppet
+
 - Ansible follows the agent-less approach while Puppet follows the agent-based approach where additional
   software needs to be installed on the target servers.
 - Ansible uses YAML for config management whereas Puppet uses its own declarative language.
@@ -25,58 +24,58 @@ Ansible vs Puppet
   - Pull: managed servers periodically pull changes from the central server (e.g. running software updates).
 - Ansible also supports the pull mechanism using the `ansible-pull` command.
 
-Supported Cloud Providers
---------------------------
+## Supported Cloud Providers
+
 Since Ansible uses the SSH and WinRM protocols for communication with target servers,
 it is not bound to any specific cloud provider.
 
 ---
 
-Practical Tasks
----------------
+## Practical Tasks
+
 - Installing Ansible on control node — done
 - Setting up passwordless auth on managed node — should add the pub key in authorized_keys;
   private key should be present on the control node.
 
-Inventory File
---------------
+## Inventory File
+
 A centralized file used for organizing managed nodes/servers. Can be written in .ini or .yml.
 Supports grouping and separation of multiple servers (e.g. webservers, db servers).
 
-Ansible Ad Hoc Commands
-------------------------
+## Ansible Ad Hoc Commands
+
 - Checking connectivity with each managed host using ping.
 - Installing a package on each host using its package manager.
 
-Ansible Playbooks
------------------
+## Ansible Playbooks
+
 Files that contain a set of Ansible ad hoc commands, written in YAML format.
 Running a playbook: `ansible-playbook -i <inventory-file> --key-file <private-key> <playbook>`
 
-Ansible Modules
----------------
+## Ansible Modules
+
 Binaries or code which runs on managed nodes for defined tasks.
 
-Plugins
--------
+## Plugins
+
 Code or extra features that expand Ansible's core capabilities.
 
-Collection
-----------
+## Collection
+
 A format in which Ansible content is distributed. Can contain playbooks, roles, modules, plugins.
 
-Ansible Roles
--------------
+## Ansible Roles
+
 Limited distribution of Ansible content for use inside plays.
 
-Ansible Galaxy
---------------
+## Ansible Galaxy
+
 A platform used for distributing Ansible collections over the internet.
 
 ---
 
-My Doubts
----------
+## My Doubts
+
 Q: How does Ansible know which private key to use to connect with managed nodes when there can be multiple
    private keys on the control server?
 A: Picks the default id_rsa key from the .ssh directory. The key can be specified by exporting variables

@@ -61,7 +61,7 @@ su <username>             # switch to a user (requires password; no username = s
 
 `su <username>` - switches to the given user account but does **not** reload the shell environment variables.
 
-![su without dash - env not reloaded](../assets/su-no-env-reload.png)
+![su without dash - env not reloaded](../../assets/su-no-env-reload.png)
 
 `$USER` still shows the previous user's name because shell env vars weren't reloaded.
 always prefer `whoami` over `$USER` to see the actual current logged-in user.
@@ -69,7 +69,7 @@ also, `su` opens the new shell in the path where the previous user was.
 
 `su - <username>` - switches to the user and reloads all shell environment variables and config. opens a fresh login shell inside the user's home directory.
 
-![su with dash - env reloaded](../assets/su-dash-env-reload.png)
+![su with dash - env reloaded](../../assets/su-dash-env-reload.png)
 
 ### Important User Files
 
