@@ -6,3 +6,15 @@
 *.tfstate
 *.tfstate.backup
 *.tfvars
+
+# deps, build,  and output directories
+**/node_modules
+**/dist
+**/angular
+**/.vscode
+
+# env vars 
+**/.env
+
+
+
